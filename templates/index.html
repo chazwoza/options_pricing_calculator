@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stock Option Price Calculator</title>
+  </head>
+  <body>
+    <h1>Stock Option Price Calculator</h1>
+    <form action="/" method="POST">
+      <label for="stock_price">Stock Price:</label>
+      <input type="number" step="any" name="stock_price" required><br><br>
+      <label for="strike_price">Strike Price:</label>
+      <input type="number" step="any" name="strike_price" required><br><br>
+      <label for="time_to_expiration">Time to Expiration (days):</label>
+      <input type="number" step="any" name="time_to_expiration" required><br><br>
+      <label for="risk_free_rate">Risk-free Rate (%):</label>
+      <input type="number" step="any" name="risk_free_rate" required><br><br>
+      <label for="implied_volatility">Implied Vol
+        atility (%):</label>
+        <input type="number" step="any" name="implied_volatility" required><br><br>
+        <label for="option_type">Option Type:</label>
+        <select name="option_type" required>
+          <option value="call">Call</option>
+          <option value="put">Put</option>
+        </select><br><br>
+        <input type="submit" value="Calculate">
+      </form>
+      {% if option_price %}
+        <h2>Option Price: {{ option_price }}</h2>
+      {% endif %}
+    </body>
+  </html>
+  
