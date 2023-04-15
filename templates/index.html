@@ -6,43 +6,33 @@
     <title>Stock Option Price Calculator</title>
   </head>
   <body>
-    <h1>Stock
-      <!doctype html>
-      <html lang="en">
-        <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <title>Stock Option Price Calculator</title>
-        </head>
-        <body>
-          <h1>Stock Option Price Calculator</h1>
-          <form action="/" method="POST">
-            <label for="stock_price">Stock Price:</label>
-            <input type="number" step="any" name="stock_price" required><br><br>
-            <label for="strike_price">Strike Price:</label>
-            <input type="number" step="any" name="strike_price" required><br><br>
-            <label for="time_to_expiration">Time to Expiration (days):</label>
-            <input type="number" step="any" name="time_to_expiration" required><br><br>
-            <label for="risk_free_rate">Risk-free Rate (%):</label>
-            <input type="number" step="any" name="risk_free_rate" required><br><br>
-            <label for="implied_volatility">Implied Volatility (%):</label>
-            <input type="number" step="any" name="implied_volatility" required><br><br>
-            <label for="option_type">Option Type:</label>
-            <select name="option_type" required>
-              <option value="call">Call</option>
-              <option value="put">Put</option>
-            </select><br><br>
-            <input type="submit" value="Calculate">
-          </form>
-          {% if option_price %}
-            <h2>Option Price and Greeks:</h2>
-            <p>Option Price: {{ option_price }}</p>
-            <p>Delta: {{ delta }}</p>
-            <p>Gamma: {{ gamma }}</p>
-            <p>Vega: {{ vega }}</p>
-            <p>Theta: {{ theta }}</p>
-            <p>Rho: {{ rho }}</p>
-          {% endif %}
-        </body>
-      </html>
-      
+    <h1>Stock Option Price Calculator</h1>
+    <form action="/" method="POST">
+      <label for="stock_price">Stock Price:</label>
+      <input type="number" step="any" name="stock_price" value="{{ stock_price }}" required><br><br>
+      <label for="strike_price">Strike Price:</label>
+      <input type="number" step="any" name="strike_price" value="{{ strike_price }}" required><br><br>
+      <label for="time_to_expiration">Time to Expiration (days):</label>
+      <input type="number" step="any" name="time_to_expiration" value="{{ time_to_expiration }}" required><br><br>
+      <label for="risk_free_rate">Risk-free Rate (%):</label>
+      <input type="number" step="any" name="risk_free_rate" value="{{ risk_free_rate }}" required><br><br>
+      <label for="implied_volatility">Implied Volatility (%):</label>
+      <input type="number" step="any" name="implied_volatility" value="{{ implied_volatility }}" required><br><br>
+      <label for="option_type">Option Type:</label>
+      <select name="option_type" required>
+        <option value="call" {% if option_type == 'call' %}selected{% endif %}>Call</option>
+        <option value="put" {% if option_type == 'put' %}selected{% endif %}>Put</option>
+      </select><br><br>
+      <input type="submit" value="Calculate">
+    </form>
+    {% if option_price %}
+      <h2>Option Price and Greeks:</h2>
+      <p>Option Price: {{ option_price }}</p>
+      <p>Delta: {{ delta }}</p>
+      <p>Gamma: {{ gamma }}</p>
+      <p>Vega: {{ vega }}</p>
+      <p>Theta: {{ theta }}</p>
+      <p>Rho: {{ rho }}</p>
+    {% endif %}
+  </body>
+</html>

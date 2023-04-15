@@ -30,13 +30,13 @@ def index():
     if request.method == 'POST':
         stock_price = float(request.form['stock_price'])
         strike_price = float(request.form['strike_price'])
-        time_to_expiration = float(request.form['time_to_expiration']) / 365
-        risk_free_rate = float(request.form['risk_free_rate']) / 100
-        implied_volatility = float(request.form['implied_volatility']) / 100
+        time_to_expiration = float(request.form['time_to_expiration'])
+        risk_free_rate = float(request.form['risk_free_rate'])
+        implied_volatility = float(request.form['implied_volatility'])
         option_type = request.form['option_type']
 
-        option_price, delta, gamma, vega, theta, rho = black_scholes_greeks(stock_price, strike_price, time_to_expiration, risk_free_rate, implied_volatility, option_type)
-        return render_template('index.html', option_price=option_price, delta=delta, gamma=gamma, vega=vega, theta=theta, rho=rho)
+        option_price, delta, gamma, vega, theta, rho = black_scholes_greeks(stock_price, strike_price, time_to_expiration / 365, risk_free_rate / 100, implied_volatility / 100, option_type)
+        return render_template('index.html', option_price=option_price, delta=delta, gamma=gamma, vega=vega, theta=theta, rho=rho, stock_price=stock_price, strike_price=strike_price, time_to_expiration=time_to_expiration, risk_free_rate=risk_free_rate, implied_volatility=implied_volatility, option_type=option_type)
 
     return render_template('index.html')
 
