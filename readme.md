@@ -7,7 +7,12 @@ Prices options using Black-Scholes Model
 ## Installation
 ### Windows
 0. winget install python
-1. pip install flask
-2. pip install scipy
-3. python app.py
+1. `pip install flask`
+2. `pip install scipy`
+3. `python app.py`
 
+### Mac
+0. install homebrew
+1. `pip3 install fask`
+2. `pip3 install scipy`
+3. `python3 app.py`
